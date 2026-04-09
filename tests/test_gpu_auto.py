@@ -30,8 +30,8 @@ if torch.cuda.is_available():
 
 # 简单推理测试
 print("\n3. 推理测试...")
-question = "1+1="
-print(f"   问题: {question}")
+question = "老师带了三个盒子，分别贴着标签：苹果、梨、苹果和梨，但是，调皮的小明偷偷把三个标签都贴错了，也就是说，每个盒子里的水果都和标签不符。现在，你只能从其中一个盒子里摸出一个水果观察。"
+print(f"   问题: {你应该从哪个标签的盒子里摸，才能推断出三个盒子里分别装的是什么？}")
 
 inputs = tokenizer(question, return_tensors="pt").to(model.device)
 print(f"   输入设备: {inputs['input_ids'].device}")

@@ -117,7 +117,9 @@ if __name__ == "__main__":
             "Please add it to the configuration file or specify a valid model using the --exec_model_name flag. "
         )
 
-    download(["datasets"], force_download=args.if_force_download) # remove download initial_rounds in new version.
+    # 跳过数据集下载，使用本地数据
+    # download(["datasets"], force_download=args.if_force_download)
+    print("Using local datasets")
 
     optimizer = Optimizer(
         dataset=config.dataset,
