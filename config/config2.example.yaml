@@ -1,11 +1,100 @@
+# AFlow 配置文件示例
+# 复制此文件为 config2.yaml 并根据需要修改
+
 models:
- "<model_name>": # model: "gpt-4-turbo"  # or gpt-3.5-turbo
-   api_type: "openai"  # or azure / ollama / groq etc.
-   base_url: "<your base url>" 
-   api_key: "<your api key>"
-   temperature: 0
- "<model_name>":  
-   api_type: "openai"  
-   base_url: "<your base url>"
-   api_key: "<your api key>"
-   temperature: 0
+  # ==================== OpenAI 模型 ====================
+  
+  # GPT-4o - 强大的多模态模型，推荐用于优化任务
+  gpt-4o:
+    api_type: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key: "sk-your-openai-api-key-here"  # 替换为你的 API 密钥
+    model: "gpt-4o"
+    temperature: 0
+  
+  # GPT-4o-mini - 成本低、速度快，推荐用于执行/评估任务
+  gpt-4o-mini:
+    api_type: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key: "sk-your-openai-api-key-here"
+    model: "gpt-4o-mini"
+    temperature: 0
+  
+  # GPT-4-turbo - 高性能模型
+  gpt-4-turbo:
+    api_type: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key: "sk-your-openai-api-key-here"
+    model: "gpt-4-turbo-preview"
+    temperature: 0
+  
+  # ==================== Azure OpenAI (可选) ====================
+  # azure-gpt-4:
+  #   api_type: "azure"
+  #   base_url: "https://your-resource.openai.azure.com/"
+  #   api_key: "your-azure-api-key"
+  #   model: "gpt-4"
+  #   api_version: "2024-02-01"
+  #   temperature: 0
+  
+  # ==================== 本地模型 (vLLM/LM Studio) ====================
+  
+  # Qwen2.5-7B-Instruct - 本地部署的中文模型
+  qwen2.5-7b:
+    api_type: "openai"
+    base_url: "http://localhost:8000/v1"  # vLLM 服务地址
+    api_key: "EMPTY"
+    model: "Qwen/Qwen2.5-7B-Instruct"
+    temperature: 0
+  
+  # Llama-3.2-3B-Instruct - 轻量级本地模型
+  llama-3.2-3b:
+    api_type: "openai"
+    base_url: "http://localhost:8001/v1"  # vLLM 服务地址
+    api_key: "EMPTY"
+    model: "meta-llama/Llama-3.2-3B-Instruct"
+    temperature: 0
+  
+  # LM Studio 本地服务器
+  lmstudio:
+    api_type: "openai"
+    base_url: "http://localhost:1234/v1"  # LM Studio 默认端口
+    api_key: "lm-studio"
+    model: "local-model"
+    temperature: 0
+
+# ==================== 配置说明 ====================
+#
+# 1. API 类型 (api_type):
+#    - "openai": OpenAI 官方 API 或兼容 API
+#    - "azure": Microsoft Azure OpenAI
+#
+# 2. 基础 URL (base_url):
+#    - OpenAI: https://api.openai.com/v1
+#    - Azure: https://your-resource.openai.azure.com/
+#    - 本地 vLLM: http://localhost:8000/v1
+#    - LM Studio: http://localhost:1234/v1
+#
+# 3. 温度 (temperature):
+#    - 0: 确定性输出（推荐用于评估）
+#    - 0.7: 有创造性的输出
+#    - 1.0: 最大随机性
+#
+# 4. 使用环境变量:
+#    可以设置 api_key: "${OPENAI_API_KEY}" 从环境变量读取
+#
+# ==================== 使用建议 ====================
+#
+# 场景 1: 使用 OpenAI API（推荐）
+#   - 优化模型: gpt-4o (能力强，用于生成/优化工作流)
+#   - 执行模型: gpt-4o-mini (成本低，用于执行/评估)
+#
+# 场景 2: 使用本地模型（需要 GPU）
+#   - 启动 vLLM: python -m vllm.entrypoints.openai.api_server
+#   - 配置使用: qwen2.5-7b 或 llama-3.2-3b
+#
+# 场景 3: 混合使用
+#   - 优化: gpt-4o (需要强模型)
+#   - 执行: qwen2.5-7b (本地执行，节省成本)
+#
+# ==================================================

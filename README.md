@@ -3,6 +3,8 @@
 [![Arxiv](https://img.shields.io/badge/arXiv-AFlow-b31b1b)](https://arxiv.org/abs/2410.10762)
 [![PR Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/FoundationAgents/AFlow/pulls)
 
+> **⚠️ Environment Notice**: This project runs in a **Conda virtual environment**. Please ensure you activate the environment (`conda activate aflow`) before running any commands. See [Conda Setup Guide](CONDA_SETUP.md) for details.
+
 > If you encounter any difficulties in using or reproducing the code, please contact me directly (Email: didi4goooogle@gmail.com, Wechat: 18831933368). Some Operators may have bugs during the migration from MetaGPT to this repository.
 
 
@@ -40,10 +42,42 @@ For custom tasks, you can reference the code in the `benchmark` folder. Inherit 
 
 ## Quick Start
 
-1. Set up the Python environment:
+### Recommended: Use Conda Environment
+
+**This project runs in a Conda virtual environment. We strongly recommend using Conda to avoid dependency conflicts.**
+
+```bash
+# One-click setup (recommended)
+./setup_conda.sh
+
+# Or manual setup
+conda create -n aflow python=3.9 -y
+conda activate aflow
+pip install -r requirements.txt
+```
+
+**⚠️ Important: Always activate the Conda environment before running AFlow:**
+```bash
+conda activate aflow
+python run.py --dataset GSM8K
+```
+
+### Alternative: Virtual Environment
+
+```bash
+python3.9 -m venv aflow_env
+source aflow_env/bin/activate  # Linux/Mac
+# or: aflow_env\Scripts\activate  # Windows
+pip install -r requirements.txt
+```
+
+### Quick Start Steps
+
+1. **Set up the Python environment:**
    ```bash
    # Create and activate a Python 3.9 virtual environment
-   conda create -n <your_env_name> python=3.9
+   conda create -n aflow python=3.9
+   conda activate aflow
 
    # Install dependencies
    pip install -r requirements.txt
